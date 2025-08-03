@@ -21,6 +21,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
+app.get('/version', (_, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Server is running',
+  });
+});
 app.use('/', routes);
 
 // ========== Socket.IO Logic ========== //
@@ -28,5 +34,5 @@ setupSocket(server);
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`Server is running on ${process.env.SOCKET_SERVER_URL}`);
+  console.log(`Server is running on port ${PORT}`);
 });
